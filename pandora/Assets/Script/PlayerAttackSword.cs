@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class PlayerAttackSword : MonoBehaviour
 {
-    private GameObject AttackArea = default;
+   
     private bool attacking = false;
-    private float timeToAttack = 0.25f;
+    private float timeToAttack = 0.5f;
     private float timer = 0f;
     // Start is called before the first frame update
     void Start()
     {
-        AttackArea = transform.GetChild(2).gameObject;
+      
     }
 
     // Update is called once per frame
@@ -20,7 +20,7 @@ public class PlayerAttackSword : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             Attack();
-            Debug.Log("lewy");
+            //Debug.Log("lewy");
         }
 
         if (attacking)
@@ -31,7 +31,7 @@ public class PlayerAttackSword : MonoBehaviour
             {
                 timer = 0;
                 attacking = false;
-                AttackArea.SetActive(attacking);
+                
                 
             }
         }
@@ -40,6 +40,22 @@ public class PlayerAttackSword : MonoBehaviour
     private void Attack()
     {
         attacking = true;
-        AttackArea.SetActive(attacking);
+    
+Vector3 bar = transform.position;
+bar = bar + transform.forward*1;
+       Collider[] hitColliders = Physics.OverlapSphere(bar, 1);
+        foreach (var hitCollider in hitColliders)
+        {
+            string team = hitCollider.name;
+            if(team=="Enemy"){
+            if (hitCollider.GetComponent<Health>() != null)
+        {
+            
+            Health health = hitCollider.GetComponent<Health>();
+            health.Damage(5);}
+
+        }
+        }
     }
+    
 }
