@@ -5,10 +5,14 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     [SerializeField] private int health = 100;
+    [SerializeField] HpHp Hp;
 
-    private int MAX_HEALTH = 100;
+    private int MAX_HEALTH= 100;
 
-
+private void Awake()
+{
+    Hp=GetComponentInChildren<HpHp>();
+}
     // Update is called once per frame
     void Update()
     {
@@ -26,7 +30,7 @@ public class Health : MonoBehaviour
         }
         
         this.health -= amount;
-        
+        Hp.UpdateHp(health,MAX_HEALTH);
         if(health <= 0)
         {
             Die();
@@ -35,7 +39,7 @@ public class Health : MonoBehaviour
 
     private void Die()
     {
-        Debug.Log("KURWA");
+       // Debug.Log("KURWA");
         Destroy(gameObject);
     }
 }
