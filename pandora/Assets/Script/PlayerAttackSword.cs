@@ -8,6 +8,7 @@ public class PlayerAttackSword : MonoBehaviour
     private bool attacking = false;
     private float timeToAttack = 0.5f;
     private float timer = 0f;
+    public PickUp SwordOnPlayer;
     // Start is called before the first frame update
     void Start()
     {
@@ -52,7 +53,7 @@ bar = bar + transform.forward*1;
         {
             
             Health health = hitCollider.GetComponent<Health>();
-            health.Damage(5);}
+            health.Damage(SwordOnPlayer.weaponStr);}
 
         }
         }

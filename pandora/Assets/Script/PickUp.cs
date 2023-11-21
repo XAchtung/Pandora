@@ -7,6 +7,7 @@ public class PickUp : MonoBehaviour
     public GameObject PickUpText;
     public GameObject SwordOnPlayer;
     public bool sword = false;
+    public int weaponStr =1;
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +29,7 @@ public class PickUp : MonoBehaviour
                 SwordOnPlayer.SetActive(true);
                 PickUpText.SetActive(false);
                 sword = true;
+                weaponStr =5;
             }
         }
     }
